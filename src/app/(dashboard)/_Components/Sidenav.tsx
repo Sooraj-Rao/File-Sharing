@@ -28,7 +28,7 @@ const Sidenav = ({ setsideBar }) => {
   ];
 
   return (
-    <div>
+    <div className=" z-50">
       <div className=" flex justify-center items-center h-16 border-b-2 relative bg-white text-black">
         <Link href={"/"} className=" sm:block hidden">
           LOGO
@@ -46,7 +46,7 @@ const Sidenav = ({ setsideBar }) => {
               key={i}
               className={`
               flex gap-2 py-4 px-6  hover:bg-gray-200 cursor-pointer font-semibold text-gray-800
-              ${active == i ? "text-blue-500 bg-gray-200 " : null}
+              ${active == i ? "text-blue-600 bg-gray-200 " : null}
               `}
               onClick={() => setactive(i)}
             >

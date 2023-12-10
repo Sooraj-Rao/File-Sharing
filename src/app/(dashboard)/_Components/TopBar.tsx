@@ -4,7 +4,7 @@ import { AlignJustify } from "lucide-react";
 
 const TopBar = ({ sideBar, setsideBar }) => {
   return (
-    <div className="flex sm:justify-end justify-between px-5 border-b-2 items-center h-16 w-full  ">
+    <div className="flex  sm:justify-end justify-between px-5 border-b-2 items-center h-16 w-full  ">
       <AlignJustify
         className=" sm:hidden"
         onClick={() => setsideBar(!sideBar)}
