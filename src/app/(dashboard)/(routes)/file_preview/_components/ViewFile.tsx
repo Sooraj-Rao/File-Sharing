@@ -1,16 +1,24 @@
 "use client";
 import { Copy } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Alert from "../../upload/_components/Alert";
 import { SendEmail } from "@/utils/GlobalApi";
 import { useUser } from "@clerk/nextjs";
+import {
+  FileNameLogic,
+  FileSizeLogic,
+  FileTypeLogic,
+} from "@/utils/CommonLogic";
 
 const ViewFile = ({ Data, SavePassword }) => {
-  const [Checked, setChecked] = useState(false);
+  const [Checked, setChecked] = useState(() => {
+    if (Data && Data.password) return true;
+    return false;
+  });
   const [password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
-  const {user} = useUser();
+  const { user } = useUser();
 
   const CopyUrl = async () => {
     window.navigator.clipboard.writeText(Data?.shortUrl);
@@ -26,10 +34,20 @@ const ViewFile = ({ Data, SavePassword }) => {
       fileSize: Data?.fileSize,
       fileType: Data?.fileType,
       shortUrl: Data?.shortUrl,
-      download:Data?.fileUrl
+      download: Data?.fileUrl,
     };
     SendEmail(data).then((res) => console.log(res));
   };
+
+  let fileType = Data?.fileType && FileTypeLogic(Data.fileType);
+  let fileSize = Data?.fileSize && FileSizeLogic(Data.fileSize);
+  let fileName = Data?.fileName && FileNameLogic(Data.fileName);
+
+  useEffect(() => {
+    Data?.password && setChecked(true);
+    Data?.password && setPassword(Data.password);
+  }, [Data?.password]);
+  console.log(password);
 
   return (
     <div className=" flex justify-center lg:flex-row flex-col p-10  gap-4 items-center h-[calc(100vh-64px)]">
@@ -45,10 +63,12 @@ const ViewFile = ({ Data, SavePassword }) => {
           />
         </div>
         <div className=" ml-4">
-          <h1 className="  font-semibold">{Data?.fileName}</h1>
+          <h1 className="  font-semibold capitalize">
+            {Data?.fileName && fileName}
+          </h1>
           <div className=" text-gray-600 flex gap-4">
-            <h1>{Data?.filetype}</h1>
-            <h1>{(Data?.fileSize / 1024 / 1024).toFixed(0)} MB</h1>
+            <h1>{Data?.fileType && fileType}</h1>
+            <h1>{Data?.fileSize && fileSize}</h1>
           </div>
         </div>
       </div>
@@ -61,26 +81,45 @@ const ViewFile = ({ Data, SavePassword }) => {
         <div className=" my-2">
           <div className=" flex items-center gap-2 mb-2">
             <input
+              checked={Checked}
               type="checkbox"
               className=" h-4 w-4  "
               onChange={() => setChecked(!Checked)}
             />
             <h2 className=" text-slate-800">Enable Password?</h2>
           </div>
-          <div className={` flex gap-2 ${Checked ? "block" : "hidden"}`}>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className=" h-10 w-5/6 border-gray-400 border rounded outline-none pl-2"
-            />
-            <button
-              className=" bg-primary text-white px-3 rounded-md"
-              onClick={() => SavePassword(password)}
-            >
-              Save
-            </button>
-          </div>
+
+          {Data?.password ? (
+            <div className={` flex gap-2 ${Checked ? "block" : "hidden"}`}>
+              <input
+                type="password"
+                value={Data?.password == password ? password:password}
+                onChange={(e) => setPassword(e.target.value)}
+                className=" h-10 w-5/6 border-gray-400 border rounded outline-none pl-2"
+              />
+              <button
+                className=" bg-primary text-white px-3 rounded-md"
+                onClick={(e) => SavePassword(password,e)}
+              >
+                Save
+              </button>
+            </div>
+          ) : (
+            <div className={` flex gap-2 ${Checked ? "block" : "hidden"}`}>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className=" h-10 w-5/6 border-gray-400 border rounded outline-none pl-2"
+              />
+              <button
+                className=" bg-primary text-white px-3 rounded-md"
+                onClick={() => SavePassword(password)}
+              >
+                Save
+              </button>
+            </div>
+          )}
           <div className=" h-32 bg-gray-100 mt-5 p-1">
             <h2>Send File to Email</h2>
             <input

@@ -1,15 +1,20 @@
 "use client";
-import { FileNameLogic, FileTypeLogic } from "@/utils/CommonLogic";
+import {
+  FileNameLogic,
+  FileSizeLogic,
+  FileTypeLogic,
+} from "@/utils/CommonLogic";
 import { Download } from "lucide-react";
 import React, { useState } from "react";
 
 const DownloadFile = ({ Data }) => {
   const [password, setpassword] = useState("");
   console.log(Data);
-  let type = Data?.filetype;
-  // let filetype=type.length>20?
+
   let fileName = Data && FileNameLogic(Data?.fileName);
-  let fileType = Data && FileTypeLogic(Data?.filetype);
+  let fileType = Data && FileTypeLogic(Data?.fileType);
+  let fileSize = Data && FileSizeLogic(Data?.fileSize);
+  console.log(fileSize);
 
   return (
     <div className=" flex justify-center items-center h-screen bg-slate-200">
@@ -21,10 +26,8 @@ const DownloadFile = ({ Data }) => {
         <div className=" h-40 bg-red-400 mt-10"></div>
         <h1>{Data && fileName}</h1>
         <h1 className=" flex justify-between">
-          <span className="w-25 overflow-scroll h-5 HideScrollBar  ">
-            {Data?.filetype}
-          </span>
-          <span>{Data.fileSize}</span>
+          <span className=" capitalize">{Data && fileType}</span>
+          <span>{Data && fileSize}</span>
         </h1>
 
         <form
@@ -42,6 +45,7 @@ const DownloadFile = ({ Data }) => {
         </form>
         <div className=" flex gap-3 mt-5  h-14 text-white items-center justify-center  ">
           <button
+            onClick={() => window.open(Data.fileUrl, "_blank")}
             disabled={Data?.password !== password}
             className=" disabled:bg-gray-500 flex gap-3 w-3/4 bg-primary justify-center items-center h-full rounded-md"
           >

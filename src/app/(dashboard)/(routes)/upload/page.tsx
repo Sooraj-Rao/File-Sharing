@@ -79,13 +79,14 @@ const page = () => {
       let res = await setDoc(doc(db, "UploadedFiles", docId), {
         fileName: file.name,
         fileSize: file.size,
-        filetype: file.type,
+        fileType: file.type,
         fileUrl: fileUrl,
         userEmail: user?.primaryEmailAddress?.emailAddress,
         userName: user?.fullName,
         password: "",
         id: docId,
-        shortUrl: process.env.NEXT_PUBLIC_BASE_URL + docId,
+        shortUrl: process.env.NEXT_PUBLIC_BASE_URL + "f/" + docId,
+        UploadDate: Date.now(),
       });
       setUpload(true);
       setDocId(docId);
