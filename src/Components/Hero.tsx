@@ -7,7 +7,7 @@ const Hero = () => {
     <section className="bg-gray-100 text-black">
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-[calc(100vh-64px)] lg:items-center">
         <div className="mx-auto  max-w-5xl text-center">
-          <h1 className=" text-primary  text-3xl font-[900]  sm:text-5xl">
+          <h1 className=" text-primary  text-3xl font-[800]  sm:text-5xl">
             <span className=" text-[5rem]">Understand User Flow.</span>
 
             <span className="sm:block text-[5rem]"> Increase Conversion. </span>

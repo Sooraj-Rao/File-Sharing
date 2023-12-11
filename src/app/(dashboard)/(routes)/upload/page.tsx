@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UploadForm from "./_components/UploadForm";
 import {
   getDownloadURL,
@@ -11,13 +11,19 @@ import { app } from "../../../../../Firebase.Config";
 import ProgressBar from "./_components/ProgressBar";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
+import { Random } from "./_components/Random";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const router = useRouter();
   const { user } = useUser();
   const [Width, setWidth] = useState("");
+  const [DocId, setDocId] = useState();
+  const [Upload, setUpload] = useState(false);
   const storage = getStorage(app);
   const db = getFirestore(app);
   let progress;
+
   const UploadFile = (file: any) => {
     try {
       const metadata = {
@@ -58,6 +64,7 @@ const page = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
+            SaveInfo(file, downloadURL);
           });
         }
       );
@@ -67,19 +74,30 @@ const page = () => {
   };
 
   const SaveInfo = async (file, fileUrl) => {
-    const docId = Date.now().toString();
-    let res = await setDoc(doc(db, "UploadedFiles", docId), {
-      fileName: file.name,
-      fileSize: file.size,
-      filetype: file.type,
-      fileUrl: fileUrl,
-      userEmail: user?.primaryEmailAddress?.emailAddress,
-      userName: user?.fullName,
-      password: "",
-      shortUrl:
-    });
+    try {
+      const docId = Random();
+      let res = await setDoc(doc(db, "UploadedFiles", docId), {
+        fileName: file.name,
+        fileSize: file.size,
+        filetype: file.type,
+        fileUrl: fileUrl,
+        userEmail: user?.primaryEmailAddress?.emailAddress,
+        userName: user?.fullName,
+        password: "",
+        id: docId,
+        shortUrl: process.env.NEXT_PUBLIC_BASE_URL + docId,
+      });
+      setUpload(true);
+      setDocId(docId);
+    } catch (error) {
+      console.log("Upload Save Failed");
+    }
   };
-  SaveInfo();
+
+  useEffect(() => {
+    Upload && router.push("/file_preview/" + DocId);
+  }, [Upload]);
+
   return (
     <div>
       <h1 className=" text-center py-5 text-2xl px-5  sm:px-0">

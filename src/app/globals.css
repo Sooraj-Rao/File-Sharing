@@ -9,3 +9,7 @@
 .Hero2 {
     background: rgba(255, 255, 255, 0.546);
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
