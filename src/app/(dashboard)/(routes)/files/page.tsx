@@ -10,19 +10,19 @@ import {
   FileTypeLogic,
 } from "@/utils/CommonLogic";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff } from "lucide-react";
+import { ArrowRightIcon, Eye, EyeOff } from "lucide-react";
 
 const page = () => {
   const router = useRouter();
   const db = getFirestore(app);
   const { user } = useUser();
   const [Data, setData] = useState([]);
-  const [Showpas, setShowpas] = useState(false);
+  const [Showpas, setShowpas] = useState("");
   let UserEmail = user?.primaryEmailAddress?.emailAddress;
 
   useEffect(() => {
-    FetchData();
-  }, []);
+    // user && FetchData();
+  }, [user]);
 
   const FetchData = async () => {
     try {
@@ -44,8 +44,12 @@ const page = () => {
 
   return (
     <section className="container px-4 mx-auto">
-      <div className="sm:flex sm:items-center sm:justify-between">
-        <h2 className="text-lg font-medium text-gray-800 ">Files uploaded</h2>
+      <div className=" flex justify-between px-4 pt-2 gap-3 items-center sm:text-lg text-sm font-medium text-gray-800">
+        <span className=" self-start">Here are your Files</span>
+        <span className=" flex items-center">
+          Total files <ArrowRightIcon className=" h-4"/> 
+          <span className=" text-blue-500 pl-2">{Data?.length}</span>
+        </span>
       </div>
       <div className="flex flex-col mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -100,7 +104,6 @@ const page = () => {
                     <tbody
                       key={item.id}
                       className="bg-white hover:bg-gray-100   "
-                      onClick={() => router.push("file_preview/" + item.id)}
                     >
                       <tr>
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -145,15 +148,17 @@ const page = () => {
                           {item?.password ? (
                             <span className=" flex ">
                               <input
-                                type={`${Showpas ? "text" : "password"}`}
+                                type={`${
+                                  Showpas == item?.id ? "text" : "password"
+                                }`}
                                 value={item.password}
                                 readOnly
-                                className="mr-2 w-16 "
+                                className="mr-2 p-1 w-16 focus:border-blue-500 border outline-none "
                               />
-                              {Showpas ? (
-                                <Eye onClick={() => setShowpas(!Showpas)} />
+                              {Showpas == item?.id ? (
+                                <Eye onClick={() => setShowpas("")} />
                               ) : (
-                                <EyeOff onClick={() => setShowpas(!Showpas)} />
+                                <EyeOff onClick={() => setShowpas(item?.id)} />
                               )}
                             </span>
                           ) : (

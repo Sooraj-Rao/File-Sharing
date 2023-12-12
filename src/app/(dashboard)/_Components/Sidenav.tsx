@@ -2,9 +2,12 @@
 import { File, Shield, Upload, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname } from 'next/navigation'
 
 const Sidenav = ({ setsideBar }) => {
   const [active, setactive] = useState(0);
+  const pathname = usePathname()
+
 
   const list = [
     {
@@ -45,8 +48,8 @@ const Sidenav = ({ setsideBar }) => {
               href={item.path}
               key={i}
               className={`
-              flex gap-2 py-4 px-6  hover:bg-gray-200 cursor-pointer font-semibold text-gray-800
-              ${active == i ? "text-blue-600 bg-gray-200 " : null}
+              flex gap-2 py-4 px-6  cursor-pointer font-semibold 
+              ${pathname == item.path ? "text-blue-600 bg-gray-200 " : 'text-gray-800'}
               `}
               onClick={() => setactive(i)}
             >

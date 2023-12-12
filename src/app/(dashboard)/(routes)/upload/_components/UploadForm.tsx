@@ -66,7 +66,7 @@ const UploadForm = ({ UploadFile, progress }) => {
       )}
 
       {progress ? (
-        file && progress !== 100 && <ProgressBar progress={progress} />
+        file && progress != 100 && <ProgressBar progress={progress} />
       ) : (
         <button
           disabled={!file}

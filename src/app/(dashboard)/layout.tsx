@@ -14,7 +14,7 @@ const layout = ({ children }) => {
       >
         <Sidenav setsideBar={setsideBar} />
       </div>
-      <div className={` sm:w-[calc(100vw-16rem)] w-full sm:ml-64  `}>
+      <div className={` sm:w-[calc(100vw-18rem)] w-full sm:ml-64  `}>
         <TopBar sideBar={sideBar} setsideBar={setsideBar} />
         {children}
       </div>

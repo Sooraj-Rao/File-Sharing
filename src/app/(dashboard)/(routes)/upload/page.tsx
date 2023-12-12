@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 const page = () => {
   const router = useRouter();
   const { user } = useUser();
-  const [Width, setWidth] = useState("");
+  const [Width, setWidth] = useState(0);
   const [DocId, setDocId] = useState();
   const [Upload, setUpload] = useState(false);
   const storage = getStorage(app);
@@ -36,7 +36,7 @@ const page = () => {
         (snapshot) => {
           progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          setWidth(progress);
+          setWidth(progress == 0 ? 2 : progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");

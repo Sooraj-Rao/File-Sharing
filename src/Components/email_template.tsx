@@ -70,7 +70,7 @@ export const EmailTemplate = ({ response }) => (
           </Row>
           <Row style={{ ...boxInfos, paddingTop: "0" }}>
             <Column style={containerButton} colSpan={2}>
-              <a download={true} style={button} href={response?.download}>
+              <a style={button} href={response?.download}>
                 Download File
               </a>
             </Column>
