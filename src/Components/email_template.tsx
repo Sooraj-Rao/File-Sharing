@@ -30,7 +30,8 @@ export const EmailTemplate = ({ response }) => (
                   textAlign: "center",
                 }}
               >
-                Hi {response?.emailToSend?.split("@")[0]}
+                {console.log(response)}
+                Hi {response?.emailToSend?.split("@")[0].replace(/[0-9_]/g, "")}
               </Heading>
               <Heading
                 as="h2"
@@ -52,13 +53,6 @@ export const EmailTemplate = ({ response }) => (
               <Text style={{ ...paragraph, marginTop: -5 }}>
                 <b>Size:{response?.fileSize} </b>
               </Text>
-              <Text style={{ ...paragraph, marginTop: -5 }}>
-                <b>Short-URL:{response?.shortUrl} </b>
-              </Text>
-              <Text style={{ ...paragraph, marginTop: -5 }}>
-                <b>Download-URL:{response?.download} </b>
-              </Text>
-
               <Text style={paragraph}>
                 If this was you, there's nothing else you need to do.
               </Text>
@@ -70,8 +64,8 @@ export const EmailTemplate = ({ response }) => (
           </Row>
           <Row style={{ ...boxInfos, paddingTop: "0" }}>
             <Column style={containerButton} colSpan={2}>
-              <a style={button} href={response?.download}>
-                Download File
+              <a style={button} href={response?.shortUrl}>
+                View file
               </a>
             </Column>
           </Row>

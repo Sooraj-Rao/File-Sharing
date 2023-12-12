@@ -8,7 +8,7 @@ const ProgressBar = ({ progress }) => {
       <div className=" flex justify-center mt-5">
         <div className="md:w-[25rem] w-3/4 bg-slate-400 h-8 flex items-center px-1 rounded-full ">
           <div
-            className={`  bg-primary text-white text-center  duration-500 rounded-full h-7 `}
+            className={`  bg-primary text-white text-center  duration-500 rounded-full h-6 `}
             style={{ width: `${progress}%` }}
           ></div>
         </div>

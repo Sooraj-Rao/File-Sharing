@@ -36,7 +36,7 @@ const page = () => {
         (snapshot) => {
           progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          setWidth(progress == 0 ? 2 : progress);
+          setWidth(progress == 0 ? 5 : progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -105,7 +105,10 @@ const page = () => {
         Start <strong>Uploading</strong> files and
         <br className=" sm:hidden block" /> <strong>Share </strong>it !
       </h1>
-      <UploadForm UploadFile={UploadFile} progress={Width} />
+      <UploadForm
+        UploadFile={UploadFile}
+        progress={Width}
+      />
     </div>
   );
 };

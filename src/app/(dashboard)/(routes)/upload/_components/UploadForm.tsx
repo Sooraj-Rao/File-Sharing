@@ -66,11 +66,16 @@ const UploadForm = ({ UploadFile, progress }) => {
       )}
 
       {progress ? (
-        file && progress != 100 && <ProgressBar progress={progress} />
+        file &&
+        progress != 100 && (
+          <div>
+            <ProgressBar progress={progress} />
+          </div>
+        )
       ) : (
         <button
           disabled={!file}
-          className=" disabled:bg-gray-500 my-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white"
+          className=" disabled:bg-gray-500 my-6 px-6 py-3 bg-primary  rounded-lg text-white"
           onClick={() => UploadFile(file)}
         >
           Upload
