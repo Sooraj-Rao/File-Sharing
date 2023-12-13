@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
   try {
     const data = await resend.emails.send({
       from: "File-Sharing@resend.dev",
-      to: ["soorajrao630@gmail.com"],
-      subject: response.userName + " shared this file with you!",
+      to: [response?.userEmail],
+      subject: response?.userName + " shared this file with you!",
       react: EmailTemplate({ response }),
     });
 

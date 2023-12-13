@@ -1,4 +1,5 @@
 export const FileNameLogic = (fileName: any) => {
+  console.log(fileName);
   return fileName.length > 20 ? fileName.slice(0, 20) + "..." : fileName;
 };
 export const FileTypeLogic = (fileType: any) => {

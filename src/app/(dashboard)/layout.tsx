@@ -1,7 +1,8 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Sidenav from "./_Components/Sidenav";
 import TopBar from "./_Components/TopBar";
+import { ToastBar, Toaster } from "react-hot-toast";
 
 const layout = ({ children }) => {
   const [sideBar, setsideBar] = useState(false);
@@ -18,6 +19,24 @@ const layout = ({ children }) => {
         <TopBar sideBar={sideBar} setsideBar={setsideBar} />
         {children}
       </div>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
     </div>
   );
 };

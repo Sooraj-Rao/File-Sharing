@@ -13,11 +13,19 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import { FileNameLogic } from "@/utils/CommonLogic";
 
 export const EmailTemplate = ({ response }) => (
   <Html>
     <Head />
-    <Preview>Yelp recent login</Preview>
+    <Preview>
+      {response?.userName
+        ? response?.userName
+        : FileNameLogic(
+            response?.userEmail?.split("@")[0].replace(/[0-9_]/g, "")
+          )}{" "}
+      sent a File
+    </Preview>
     <Body style={main}>
       <Container>
         <Section style={content}>
@@ -41,7 +49,12 @@ export const EmailTemplate = ({ response }) => (
                   textAlign: "center",
                 }}
               >
-                {response.userName} shared this file!
+                {response?.userName
+                  ? response?.userName
+                  : FileNameLogic(
+                      response?.userEmail?.split("@")[0].replace(/[0-9_]/g, "")
+                    )}{" "}
+                shared this file!
               </Heading>
 
               <Text style={paragraph}>
@@ -54,7 +67,7 @@ export const EmailTemplate = ({ response }) => (
                 <b>Size:{response?.fileSize} </b>
               </Text>
               <Text style={paragraph}>
-                If this was you, there's nothing else you need to do.
+                <b>Password to open file: {response?.password}</b>
               </Text>
               <Text style={{ ...paragraph, marginTop: -5 }}>
                 If this wasn't you or if you have additional questions, please

@@ -3,9 +3,11 @@ import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { app } from "../../../../../../Firebase.Config";
 import ViewFile from "../_components/ViewFile";
+import toast from "react-hot-toast";
 
 const page = ({ params }) => {
   const [Data, setData] = useState();
+  const [load, setload] = useState(false);
   let DocId = params?.id;
   const db = getFirestore(app);
 
@@ -30,13 +32,17 @@ const page = ({ params }) => {
 
   const SavePassword = async (password) => {
     try {
+      setload(true);
       const docRef = doc(db, "UploadedFiles", DocId);
       const res = await updateDoc(docRef, {
         password: password,
       });
-      console.log("Password Added");
+      toast.success("Password Saved");
+      setload(false);
     } catch (error) {
       console.log(error);
+      toast.error("Unable to save password");
+      setload(false);
     }
   };
 
