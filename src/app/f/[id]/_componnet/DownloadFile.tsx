@@ -61,12 +61,16 @@ const DownloadFile = ({ Data }) => {
             className=" w-3/4 border-2 border-gray-300 focus:border-blue-500 rounded-md outline-none pl-2"
           />
         </div>
-        <p className=" text-center">Click below to download file!</p>
+        <p className=" text-center">
+          {Data?.password
+            ? !password.length > 0 && "Password required!"
+            : "Click below to download file!"}
+        </p>
         <div className=" flex gap-3 mt-5  h-12 text-white items-center justify-center  ">
           <button
             onClick={() => window.open(Data.fileUrl, "_blank")}
             disabled={Data?.password !== password}
-            className=" disabled:bg-gray-500 flex gap-3 w-3/4 bg-primary justify-center items-center h-full rounded-md"
+            className=" disabled:bg-gray-500 disabled:cursor-not-allowed flex gap-3 w-3/4 bg-primary justify-center items-center h-full rounded-md"
           >
             <Download />
             <span>Download</span>

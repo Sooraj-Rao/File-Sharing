@@ -1,3 +1,3 @@
 export default {
-  desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus numquam ea!",
+  desc: "Quick file uploads, easy sharing, and instant collaboration simplify your file management and streamline seamless sharing experiences on our platform",
 };

@@ -13,7 +13,7 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import { FileNameLogic } from "@/utils/CommonLogic";
+import { FileNameLogic, FileSizeLogic } from "@/utils/CommonLogic";
 
 export const EmailTemplate = ({ response }) => (
   <Html>
@@ -38,7 +38,6 @@ export const EmailTemplate = ({ response }) => (
                   textAlign: "center",
                 }}
               >
-                {console.log(response)}
                 Hi {response?.emailToSend?.split("@")[0].replace(/[0-9_]/g, "")}
               </Heading>
               <Heading
@@ -64,7 +63,9 @@ export const EmailTemplate = ({ response }) => (
                 <b>File-type:{response?.fileType} </b>
               </Text>
               <Text style={{ ...paragraph, marginTop: -5 }}>
-                <b>Size:{response?.fileSize} </b>
+                <b>
+                  Size:{response?.fileSize && FileSizeLogic(response?.fileSize)}{" "}
+                </b>
               </Text>
               <Text style={paragraph}>
                 <b>Password to open file: {response?.password}</b>

@@ -9,9 +9,9 @@ const UploadForm = ({ UploadFile, progress }) => {
 
   const handleChange = (e: any) => {
     let input = e.target.files[0];
-    // if (input && input.size > 2000000) {
-    //   return setError("File size should be less than 2 MB");
-    // }
+    if (input && input.size > 10000000) {
+      return setError("File size should be less than 10 MB");
+    }
     Error && setError("");
     setfile(input);
   };

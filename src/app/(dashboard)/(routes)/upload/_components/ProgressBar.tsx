@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProgressBar = ({ progress }) => {
-  console.log(progress);
 
   return (
     <div>

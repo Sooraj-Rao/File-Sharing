@@ -6,11 +6,11 @@ const Hero = () => {
   return (
     <section className="bg-gray-100 text-black">
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-[calc(100vh-64px)] lg:items-center">
-        <div className="mx-auto  max-w-5xl text-center">
-          <h1 className=" text-primary  text-3xl font-[800]  sm:text-5xl">
-            <span className=" text-[5rem]">Understand User Flow.</span>
+        <div className="mx-auto   text-center">
+          <h1 className=" text-primary  text-3xl font-[800]  sm:text-5xl w-full ">
+            <span className=" text-[6.3rem]">Rapid file uploads </span>
 
-            <span className="sm:block text-[5rem]"> Increase Conversion. </span>
+            <span className="sm:flex  text-[6rem] py-3"> Instant, seamless sharing </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">

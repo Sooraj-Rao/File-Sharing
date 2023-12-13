@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -7,9 +8,10 @@ const Header = () => {
       <header className="bg-white border-b-2 border-slate-200 sticky top-0   ">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            <div className="flex-1 md:flex md:items-center md:gap-12">
+            <div className="flex-1 md:flex md:items-center md:gap-2 font-bold text-primary text-3xl ">
+            <Image src={'/Logo.gif'} height={100} width={100} alt="" className=" h-10 w-10"/>
               <Link className="block  " href="/">
-                LOGO
+                QuickSend
               </Link>
             </div>
 

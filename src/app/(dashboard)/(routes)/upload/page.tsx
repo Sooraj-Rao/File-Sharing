@@ -13,6 +13,7 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
 import { Random } from "./_components/Random";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const page = () => {
   const router = useRouter();
@@ -35,41 +36,31 @@ const page = () => {
         "state_changed",
         (snapshot) => {
           progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
           setWidth(progress == 0 ? 5 : progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
         },
         (error) => {
           switch (error.code) {
             case "storage/unauthorized":
-              console.log(error);
+              toast.error("Uploading failed!");
 
               break;
             case "storage/canceled":
-              console.log(error);
+              toast.error("Uploading failed!");
               break;
 
             case "storage/unknown":
-              console.log(error);
+              toast.error("Uploading failed!");
               break;
           }
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
             SaveInfo(file, downloadURL);
           });
         }
       );
     } catch (error) {
-      console.log("Error Upload : " + error);
+      toast.error("Uploading failed!");
     }
   };
 
@@ -105,10 +96,7 @@ const page = () => {
         Start <strong>Uploading</strong> files and
         <br className=" sm:hidden block" /> <strong>Share </strong>it !
       </h1>
-      <UploadForm
-        UploadFile={UploadFile}
-        progress={Width}
-      />
+      <UploadForm UploadFile={UploadFile} progress={Width} />
     </div>
   );
 };

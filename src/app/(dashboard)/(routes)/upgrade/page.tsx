@@ -1,9 +1,19 @@
-import React from 'react'
+"use client";
+import React, { useState } from "react";
+import Cards from "./_components/Cards";
+import Contact from "./_components/Contact";
 
 const page = () => {
+  const [contact, setcontact] = useState(false);
   return (
-    <div>Upgradde</div>
-  )
-}
+    <div>
+      {contact ? (
+        <Contact />
+      ) : (
+        <Cards contact={contact} setContact={setcontact} />
+      )}
+    </div>
+  );
+};
 
-export default page
+export default page;

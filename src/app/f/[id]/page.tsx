@@ -3,6 +3,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { app } from "../../../../Firebase.Config";
 import DownloadFile from "./_componnet/DownloadFile";
+import toast from "react-hot-toast";
 
 const page = ({ params }) => {
   const [Data, setData] = useState("");
@@ -14,13 +15,12 @@ const page = ({ params }) => {
       const docRef = doc(db, "UploadedFiles", DocId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setData(docSnap.data());
       } else {
-        console.log("File deosnt exist in DB");
+       toast.error('File doesnt exist!')
       }
     } catch (error) {
-      console.log(error);
+      toast.error('File doesnt exist!')
     }
   };
 

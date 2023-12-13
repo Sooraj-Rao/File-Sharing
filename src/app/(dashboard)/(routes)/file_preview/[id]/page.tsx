@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 const page = ({ params }) => {
   const [Data, setData] = useState();
-  const [load, setload] = useState(false);
   let DocId = params?.id;
   const db = getFirestore(app);
 
@@ -16,13 +15,12 @@ const page = ({ params }) => {
       const docRef = doc(db, "UploadedFiles", DocId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setData(docSnap.data());
       } else {
-        console.log("File deosnt exist in DB");
+        toast.error("File deosnt exist!");
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Unable to fetch file details!')
     }
   };
 
@@ -32,17 +30,13 @@ const page = ({ params }) => {
 
   const SavePassword = async (password) => {
     try {
-      setload(true);
       const docRef = doc(db, "UploadedFiles", DocId);
       const res = await updateDoc(docRef, {
         password: password,
       });
       toast.success("Password Saved");
-      setload(false);
     } catch (error) {
-      console.log(error);
       toast.error("Unable to save password");
-      setload(false);
     }
   };
 
