@@ -16,7 +16,7 @@ import Alert from "../upload/_components/Alert";
 import FileList from "./_components/FileList";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const db = getFirestore(app);
   const { user } = useUser();
@@ -27,6 +27,7 @@ const page = () => {
 
   useEffect(() => {
     UserEmail && FetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const FetchData = async () => {
@@ -62,4 +63,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -5,7 +5,7 @@ import { app } from "../../../../Firebase.Config";
 import DownloadFile from "./_componnet/DownloadFile";
 import toast from "react-hot-toast";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const [Data, setData] = useState("");
   let DocId = params?.id;
   const db = getFirestore(app);
@@ -26,9 +26,10 @@ const page = ({ params }) => {
 
   useEffect(() => {
     DocId && GetFileData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DocId]);
 
   return <div><DownloadFile Data={Data}/></div>;
 };
 
-export default page;
+export default Page;

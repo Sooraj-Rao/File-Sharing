@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Cards from "./_components/Cards";
 import Contact from "./_components/Contact";
 
-const page = () => {
+const Page = () => {
   const [contact, setcontact] = useState(false);
   return (
     <div>
@@ -16,4 +16,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

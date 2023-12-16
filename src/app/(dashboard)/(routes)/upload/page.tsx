@@ -15,7 +15,7 @@ import { Random } from "./_components/Random";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const { user } = useUser();
   const [Width, setWidth] = useState(0);
@@ -88,6 +88,7 @@ const page = () => {
 
   useEffect(() => {
     Upload && router.push("/file_preview/" + DocId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Upload]);
 
   return (
@@ -101,4 +102,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

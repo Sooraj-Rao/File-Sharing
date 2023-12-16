@@ -70,10 +70,6 @@ export const EmailTemplate = ({ response }) => (
               <Text style={paragraph}>
                 <b>Password to open file: {response?.password}</b>
               </Text>
-              <Text style={{ ...paragraph, marginTop: -5 }}>
-                If this wasn't you or if you have additional questions, please
-                see our support page.
-              </Text>
             </Column>
           </Row>
           <Row style={{ ...boxInfos, paddingTop: "0" }}>

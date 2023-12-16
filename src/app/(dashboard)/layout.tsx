@@ -4,7 +4,7 @@ import Sidenav from "./_Components/Sidenav";
 import TopBar from "./_Components/TopBar";
 import { ToastBar, Toaster } from "react-hot-toast";
 
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
   const [sideBar, setsideBar] = useState(false);
   return (
     <div className={`flex `}>
@@ -41,4 +41,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default Layout;
