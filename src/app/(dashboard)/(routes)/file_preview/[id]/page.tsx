@@ -5,8 +5,8 @@ import { app } from "../../../../../../Firebase.Config";
 import ViewFile from "../_components/ViewFile";
 import toast from "react-hot-toast";
 
-const Page = ({ params }) => {
-  const [Data, setData] = useState();
+const Page = ({ params }: any) => {
+  const [Data, setData]: any = useState();
   let DocId = params?.id;
   const db = getFirestore(app);
 
@@ -20,16 +20,16 @@ const Page = ({ params }) => {
         toast.error("File deosnt exist!");
       }
     } catch (error) {
-      toast.error('Unable to fetch file details!')
+      toast.error("Unable to fetch file details!");
     }
   };
 
   useEffect(() => {
     DocId && GetFileData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const SavePassword = async (password) => {
+  const SavePassword = async (password: any) => {
     try {
       const docRef = doc(db, "UploadedFiles", DocId);
       const res = await updateDoc(docRef, {

@@ -4,7 +4,7 @@ import Sidenav from "./_Components/Sidenav";
 import TopBar from "./_Components/TopBar";
 import { ToastBar, Toaster } from "react-hot-toast";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   const [sideBar, setsideBar] = useState(false);
   return (
     <div className={`flex `}>
@@ -30,10 +30,6 @@ const Layout = ({ children }) => {
           },
           success: {
             duration: 3000,
-            theme: {
-              primary: "green",
-              secondary: "black",
-            },
           },
         }}
       />

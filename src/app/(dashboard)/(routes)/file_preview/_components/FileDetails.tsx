@@ -23,7 +23,7 @@ const FileDetails = ({
   setEmail,
   Email,
   setCopied,
-}) => {
+}: any) => {
   const { user } = useUser();
   let fileType = Data?.fileType && FileTypeLogic(Data.fileType);
   let fileSize = Data?.fileSize && FileSizeLogic(Data.fileSize);

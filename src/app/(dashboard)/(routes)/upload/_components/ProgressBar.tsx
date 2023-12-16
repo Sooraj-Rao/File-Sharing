@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProgressBar = ({ progress }) => {
+const ProgressBar = ({ progress }:any) => {
 
   return (
     <div>

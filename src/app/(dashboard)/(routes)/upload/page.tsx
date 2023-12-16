@@ -19,7 +19,7 @@ const Page = () => {
   const router = useRouter();
   const { user } = useUser();
   const [Width, setWidth] = useState(0);
-  const [DocId, setDocId] = useState();
+  const [DocId, setDocId]: any = useState();
   const [Upload, setUpload] = useState(false);
   const storage = getStorage(app);
   const db = getFirestore(app);
@@ -64,7 +64,7 @@ const Page = () => {
     }
   };
 
-  const SaveInfo = async (file, fileUrl) => {
+  const SaveInfo = async (file: any, fileUrl: any) => {
     try {
       const docId = Random();
       let res = await setDoc(doc(db, "UploadedFiles", docId), {
@@ -88,7 +88,7 @@ const Page = () => {
 
   useEffect(() => {
     Upload && router.push("/file_preview/" + DocId);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Upload]);
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import Contact from "./Contact";
 
-const Cards = ({ contact, setContact }) => {
+const Cards = ({ contact, setContact }:any) => {
     console.log(contact);
     
   return (

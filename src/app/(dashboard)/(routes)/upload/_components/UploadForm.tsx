@@ -3,8 +3,8 @@ import Alert from "./Alert";
 import FilePreview from "./FilePreview";
 import ProgressBar from "./ProgressBar";
 
-const UploadForm = ({ UploadFile, progress }) => {
-  const [file, setfile] = useState();
+const UploadForm = ({ UploadFile, progress }: any) => {
+  const [file, setfile]: any = useState();
   const [Error, setError] = useState("");
 
   const handleChange = (e: any) => {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from 'next/navigation'
 
-const Sidenav = ({ setsideBar }) => {
+const Sidenav = ({ setsideBar }:any) => {
   const [active, setactive] = useState(0);
   const pathname = usePathname()
 

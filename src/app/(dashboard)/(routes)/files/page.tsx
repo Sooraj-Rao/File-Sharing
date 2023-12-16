@@ -20,14 +20,14 @@ const Page = () => {
   const router = useRouter();
   const db = getFirestore(app);
   const { user } = useUser();
-  const [Nodocs, setNodocs] = useState();
+  const [Nodocs, setNodocs]:any = useState();
   const [Data, setData] = useState([]);
   const [Showpas, setShowpas] = useState("");
   let UserEmail = user?.primaryEmailAddress?.emailAddress;
 
   useEffect(() => {
     UserEmail && FetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const FetchData = async () => {
@@ -40,13 +40,13 @@ const Page = () => {
       if (querySnapshot.empty) {
         return setNodocs(<Alert msg={"No Documents found!"} color={"black"} />);
       }
-      let Files = [];
+      let Files: any = [];
       querySnapshot.forEach((doc) => {
         Files.push(doc.data());
       });
       setData(Files);
     } catch (error) {
-      toast.error('Unable to fetch Files')
+      toast.error("Unable to fetch Files");
     }
   };
 

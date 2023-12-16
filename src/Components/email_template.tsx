@@ -15,7 +15,7 @@ import {
 } from "@react-email/components";
 import { FileNameLogic, FileSizeLogic } from "@/utils/CommonLogic";
 
-export const EmailTemplate = ({ response }) => (
+export const EmailTemplate = ({ response }: any) => (
   <Html>
     <Head />
     <Preview>

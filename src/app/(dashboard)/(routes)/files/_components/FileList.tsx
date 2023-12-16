@@ -7,7 +7,7 @@ import { File } from "@/utils/Svg";
 import { ArrowRightIcon, Eye, EyeOff } from "lucide-react";
 import React from "react";
 
-const FileList = ({ Data, Nodocs, setShowpas, Showpas, router }) => {
+const FileList = ({ Data, Nodocs, setShowpas, Showpas, router }: any) => {
   return (
     <section className="container px-4 mx-auto">
       <div className=" flex justify-between px-6 pt-2 gap-3 items-center sm:text-lg text-sm font-medium text-gray-800">
@@ -65,7 +65,7 @@ const FileList = ({ Data, Nodocs, setShowpas, Showpas, router }) => {
                       </th>
                     </tr>
                   </thead>
-                  {Data?.map((item, i) => {
+                  {Data?.map((item: any, i: any) => {
                     let fileSize = FileSizeLogic(item?.fileSize);
                     let fileName = FileNameLogic(item?.fileName);
                     let fileType = FileTypeLogic(item?.fileType);

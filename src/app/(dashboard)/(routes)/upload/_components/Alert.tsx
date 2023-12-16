@@ -1,7 +1,7 @@
 import { AlertCircle, CheckIcon } from "lucide-react";
 import React from "react";
 
-const Alert = ({ msg, color }) => {
+const Alert = ({ msg, color }: any) => {
   return (
     <div className=" flex justify-center w-full">
       <div

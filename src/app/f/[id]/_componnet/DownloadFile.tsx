@@ -8,7 +8,7 @@ import { Download } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const DownloadFile = ({ Data }) => {
+const DownloadFile = ({ Data }: any) => {
   const [password, setpassword] = useState("");
 
   let fileName = Data && FileNameLogic(Data?.fileName);
@@ -63,7 +63,7 @@ const DownloadFile = ({ Data }) => {
         </div>
         <p className=" text-center">
           {Data?.password
-            ? !password.length > 0 && "Password required!"
+            ? password.length == 0 && "Password required!"
             : "Click below to download file!"}
         </p>
         <div className=" flex gap-3 mt-5  h-12 text-white items-center justify-center  ">

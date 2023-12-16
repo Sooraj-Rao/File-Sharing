@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-const FilePreview = ({ file, removeFile, progress }) => {
+const FilePreview = ({ file, removeFile, progress }:any) => {
   let FileName =FileNameLogic(file?.name);
   let Filetype = FileTypeLogic(file?.type);
   let Filesize = FileSizeLogic(file?.size);

@@ -2,7 +2,7 @@ import React from "react";
 import { UserButton } from "@clerk/nextjs";
 import { AlignJustify } from "lucide-react";
 
-const TopBar = ({ sideBar, setsideBar }) => {
+const TopBar = ({ sideBar, setsideBar }: any) => {
   return (
     <div className="flex  sm:justify-end justify-between px-5 border-b-2 items-center h-16 w-full  ">
       <AlignJustify

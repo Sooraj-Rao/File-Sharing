@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import FileDetails from "./FileDetails";
 
-const ViewFile = ({ Data, SavePassword }) => {
+const ViewFile = ({ Data, SavePassword }: any) => {
   const [Checked, setChecked] = useState(() => {
     if (Data && Data.password) return true;
     return false;
@@ -10,7 +10,7 @@ const ViewFile = ({ Data, SavePassword }) => {
   const [Copied, setCopied] = useState(false);
   const [password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
-  const [src, setSrc] = useState('/File.png');
+  const [src, setSrc] = useState("/File.png");
 
   useEffect(() => {
     Data?.password && setChecked(true);
