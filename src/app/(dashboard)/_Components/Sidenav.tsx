@@ -2,12 +2,12 @@
 import { File, Shield, Upload, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 
-const Sidenav = ({ setsideBar }:any) => {
+const Sidenav = ({ setsideBar }: any) => {
   const [active, setactive] = useState(0);
-  const pathname = usePathname()
-
+  const pathname = usePathname();
 
   const list = [
     {
@@ -33,8 +33,15 @@ const Sidenav = ({ setsideBar }:any) => {
   return (
     <div className=" z-50">
       <div className=" flex justify-center items-center h-16 border-b-2 relative bg-white text-black">
-        <Link href={"/"} className=" sm:block hidden">
-          LOGO
+        <Link href={"/"} className=" sm:flex items-center gap-2 hidden ">
+          <Image
+            src={"/Logo.gif"}
+            height={100}
+            width={100}
+            alt=""
+            className=" h-10 w-10"
+          />
+          <h2 className=" font-bold text-xl">QuickSend</h2>
         </Link>
         <X
           className=" sm:hidden absolute right-4"
@@ -49,7 +56,11 @@ const Sidenav = ({ setsideBar }:any) => {
               key={i}
               className={`
               flex gap-2 py-4 px-6  cursor-pointer font-semibold 
-              ${pathname == item.path ? "text-blue-600 bg-gray-200 " : 'text-gray-800'}
+              ${
+                pathname == item.path
+                  ? "text-blue-600 bg-gray-200 "
+                  : "text-gray-800"
+              }
               `}
               onClick={() => setactive(i)}
             >

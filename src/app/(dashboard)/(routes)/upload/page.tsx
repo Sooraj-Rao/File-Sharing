@@ -88,6 +88,7 @@ const Page = () => {
 
   useEffect(() => {
     Upload && router.push("/file_preview/" + DocId);
+    !user && router.push("/sign-in");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Upload]);
 

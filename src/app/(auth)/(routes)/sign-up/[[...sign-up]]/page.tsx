@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="  flex justify-center bg-gray-800 Signin h-[calc(100vh-64px)] items-center">
+    <div className="  flex justify-center bg-gray-300 Signin h-screen items-center">
       <SignUp />
     </div>
   );
